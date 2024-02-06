@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./leaderboard.css"; // Import the stylesheet
 
 interface LeaderboardProps {
   apiUrl?: string;
@@ -30,31 +29,31 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
   }, [apiUrl, leaderboardData]);
 
   return (
-    <div style={{ ...customStyles }} className="leaderboard-container">
-      <h2 className="leaderboard-title">Leaderboard</h2>
-      <table className="leaderboard-table">
+    <div style={{ ...customStyles }} className="my-leaderboard-container">
+      <h2 className="my-leaderboard-title">Leaderboard</h2>
+      <table className="my-leaderboard-table">
         <thead>
-          <tr className="table-header">
-            <th className="table-cell">#</th>
-            <th className="table-cell">Participant</th>
-            <th className="table-cell">Pts</th>
+          <tr className="my-table-header">
+            <th className="my-table-cell">#</th>
+            <th className="my-table-cell">Participant</th>
+            <th className="my-table-cell">Pts</th>
           </tr>
         </thead>
         <tbody>
           {data.map((entry, index) => (
-            <tr key={entry.id} className="table-row">
-              <td className="table-cell">{index + 1}</td>
-              <td className="table-cell participant-cell">
-                <div className="participant-info">
+            <tr key={entry.id} className="my-table-row">
+              <td className="my-table-cell">{index + 1}</td>
+              <td className="my-table-cell my-participant-cell">
+                <div className="my-participant-info">
                   <img
                     src={entry.image}
                     alt={`Participant ${index + 1}`}
-                    className="participant-image"
+                    className="my-participant-image"
                   />
-                  <span className="participant-address">{entry.address}</span>
+                  <span className="my-participant-address">{entry.address}</span>
                 </div>
               </td>
-              <td className="table-cell score-cell">{entry.score}</td>
+              <td className="my-table-cell my-score-cell">{entry.score}</td>
             </tr>
           ))}
         </tbody>
