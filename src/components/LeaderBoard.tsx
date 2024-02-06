@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import "./leaderboard.css"; // Import the stylesheet
 
 interface LeaderboardProps {
   apiUrl?: string;
-  leaderboardData?: Array<{ id: number; username: string; score: number }>;
+  leaderboardData?: Array<{ id: number; image: string; address: string; score: number }>;
   customStyles?: React.CSSProperties;
 }
 
@@ -12,7 +13,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
   customStyles,
 }) => {
   const [data, setData] = useState<
-    Array<{ id: number; username: string; score: number }>
+    Array<{ id: number; image: string; address: string; score: number }>
   >([]);
 
   useEffect(() => {
@@ -29,22 +30,31 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
   }, [apiUrl, leaderboardData]);
 
   return (
-    <div style={customStyles}>
-      <h2>Leaderboard</h2>
-      <table>
+    <div style={{ ...customStyles }} className="leaderboard-container">
+      <h2 className="leaderboard-title">Leaderboard</h2>
+      <table className="leaderboard-table">
         <thead>
-          <tr>
-            <th>#</th>
-            <th>Participant</th>
-            <th>Pts</th>
+          <tr className="table-header">
+            <th className="table-cell">#</th>
+            <th className="table-cell">Participant</th>
+            <th className="table-cell">Pts</th>
           </tr>
         </thead>
         <tbody>
           {data.map((entry, index) => (
-            <tr key={entry.id}>
-              <td>{index + 1}</td>
-              <td>{entry.username}</td>
-              <td>{entry.score}</td>
+            <tr key={entry.id} className="table-row">
+              <td className="table-cell">{index + 1}</td>
+              <td className="table-cell participant-cell">
+                <div className="participant-info">
+                  <img
+                    src={entry.image}
+                    alt={`Participant ${index + 1}`}
+                    className="participant-image"
+                  />
+                  <span className="participant-address">{entry.address}</span>
+                </div>
+              </td>
+              <td className="table-cell score-cell">{entry.score}</td>
             </tr>
           ))}
         </tbody>
