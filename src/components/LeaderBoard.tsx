@@ -1,32 +1,60 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
 
 interface LeaderboardProps {
-  apiUrl?: string;
-  leaderboardData?: Array<{ id: number; image: string; address: string; score: number }>;
+  apiUrl?: string | any;
+  leaderboardData?: Array<{
+    id: number;
+    image: string;
+    address: string;
+    score: number;
+  }>;
   customStyles?: React.CSSProperties;
 }
 
 const Leaderboard: React.FC<LeaderboardProps> = ({
   apiUrl,
-  leaderboardData,
+  leaderboardData = [],
   customStyles,
 }) => {
   const [data, setData] = useState<
     Array<{ id: number; image: string; address: string; score: number }>
   >([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (apiUrl) {
-      fetch(apiUrl)
-        .then((response) => response.json())
-        .then((fetchedData) => setData(fetchedData))
-        .catch((error) =>
-          console.error("Error fetching leaderboard data:", error)
-        );
-    } else if (leaderboardData) {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(apiUrl);
+        const fetchedData = await response.json();
+        setData(fetchedData);
+      } catch (error) {
+        setError("Error fetching leaderboard data");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (!leaderboardData.length && apiUrl) {
+      fetchData();
+    } else {
       setData(leaderboardData);
+      setLoading(false);
     }
   }, [apiUrl, leaderboardData]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  if (data.length === 0) {
+    return <p>No leaderboard data available</p>;
+  }
 
   return (
     <div style={{ ...customStyles }} className="my-leaderboard-container">
@@ -50,7 +78,9 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
                     alt={`Participant ${index + 1}`}
                     className="my-participant-image"
                   />
-                  <span className="my-participant-address">{entry.address}</span>
+                  <span className="my-participant-address">
+                    {entry.address}
+                  </span>
                 </div>
               </td>
               <td className="my-table-cell my-score-cell">{entry.score}</td>
