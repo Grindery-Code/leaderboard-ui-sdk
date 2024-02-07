@@ -7,7 +7,7 @@ A flexible and customizable React leaderboard component to display and visualize
 You can install the React Leaderboard component via npm:
 
 ```bash
-npm install mode-leaderboard
+npm install leaderboard-ui-sdk
 ```
 
 ## Usage with API URL
@@ -16,7 +16,7 @@ Import the `Leaderboard` component into your React application and use it by pro
 
 ```jsx
 import React from 'react';
-import Leaderboard from 'mode-leaderboard';
+import Leaderboard from 'leaderboard-ui-sdk';
 
 const App = () => {
   const apiUrl = 'https://example.com/api/leaderboard';
@@ -37,7 +37,7 @@ Import the `Leaderboard` component into your React application and use it by pro
 
 ```jsx
 import React from 'react';
-import Leaderboard from 'mode-leaderboard';
+import Leaderboard from 'leaderboard-ui-sdk';
 
 const App = () => {
   
@@ -123,7 +123,7 @@ Visit the npm website and search for your package to verify that it has been pub
 
 ### Additional Tips
 
-- **Scoped Packages**: If you want to publish your package under a scope (e.g., `@yourusername/mode-leaderboard`), you can add the `--access` flag when publishing:
+- **Scoped Packages**: If you want to publish your package under a scope (e.g., `@yourusername/leaderboard-ui-sdk`), you can add the `--access` flag when publishing:
 
   ```bash
   npm publish --access public
