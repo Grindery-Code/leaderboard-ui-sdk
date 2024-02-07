@@ -1,30 +1,71 @@
-# React + TypeScript + Vite
+# React Leaderboard Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A flexible and customizable React leaderboard component to display and visualize leaderboard data.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+You can install the React Leaderboard component via npm:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+npm install mode-leaderboard
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Usage
+
+Import the `Leaderboard` component into your React application and use it by providing either an API URL or static leaderboard data.
+
+```jsx
+import React from 'react';
+import Leaderboard from 'mode-leaderboard';
+
+const App = () => {
+  const apiUrl = 'https://example.com/api/leaderboard';
+  
+  return (
+    <div>
+      <Leaderboard apiUrl={apiUrl} customStyles={{ backgroundColor: '#f2f2f2' }} />
+    </div>
+  );
+};
+
+export default App;
+```
+
+### Props
+
+- **apiUrl** *(optional)*: URL to fetch leaderboard data from.
+- **leaderboardData** *(optional)*: Array of objects representing leaderboard entries.
+- **customStyles** *(optional)*: Custom styles to apply to the leaderboard container.
+
+<!-- ## Example
+
+For a quick example, you can run the included example application:
+
+```bash
+cd example
+npm install
+npm start
+```
+
+This will start a development server, and you can view the leaderboard component in action. -->
+
+## Customization
+
+You can customize the appearance of the leaderboard by providing custom styles through the `customStyles` prop. Feel free to adjust the styles according to your design preferences.
+
+## Data Format
+
+The expected format for leaderboard data is an array of objects, where each object represents a leaderboard entry. Each entry should have the following properties:
+
+- **id**: Unique identifier for the entry.
+- **image**: URL to the participant's image.
+- **address**: Participant's wallet address.
+- **score**: Participant's score.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+Thank you for using the Mode Leaderboard component! Contributions, issues, and feedback are welcome.
