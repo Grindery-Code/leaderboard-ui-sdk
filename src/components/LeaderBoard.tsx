@@ -58,7 +58,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
 
   return (
     <div style={{ ...customStyles }} className="my-leaderboard-container">
-      <h2 className="my-leaderboard-title">Leaderboard</h2>
+      {/* <h2 className="my-leaderboard-title">Leaderboard</h2> */}
       <table className="my-leaderboard-table">
         <thead>
           <tr className="my-table-header">
