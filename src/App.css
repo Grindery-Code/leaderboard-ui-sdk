@@ -1,5 +1,6 @@
 .my-leaderboard-container {
   font-family: Arial, sans-serif;
+  width: auto;
 }
 
 .my-leaderboard-title {
@@ -7,7 +8,7 @@
 }
 
 .my-leaderboard-table {
-  width: 100%;
+  width: fit-content;
   border-collapse: collapse;
   margin-top: 10px;
 }
